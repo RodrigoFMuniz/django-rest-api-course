@@ -24,6 +24,29 @@
 ### -> Execute migrate
 >>`python manage.py migrate`
 ### -> Start app core
+> - Declare into INSTALLED_APPS in settings.py
 >> `python manage.py startapp core`
+### -> Start Modeling the models(tables) of project
+>from django.db import models
+
+### -> Create your models here.
+>       class Pontos_Turisticos(models.Model):
+>          name = models.CharField(max_length=150)
+>          description = models.TextField()
+>          aprovado = models.BooleanField(default=False)
+>
+>          def __str__(self):
+>            return self.name
+
+### -> Allow access of Dashboard to your Models as admin
+>         from django.contrib import admin
+>         from .models import Pontos_Turisticos
+>         admin.site.register(Pontos_Turisticos)
+
+### -> Create a sub-folder called api into you app, at same level of migrations
+> - Transform It creating a file called ***\_\_init\_\_.py***
+> - Create the file ***serializers.py***
+> - Create the file ***viewsets.py***
+
 
     
