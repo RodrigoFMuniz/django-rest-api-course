@@ -21,7 +21,9 @@
 > - Create superuser by using the following command
 >> `python manage.py createsuperuser`
 > - Insert User name, email and password
-### -> Create migrate the migrations
-> - Execute command line 
+### -> Execute migrate
 >>`python manage.py migrate`
+### -> Start app core
+>> `python manage.py startapp core`
+
     
