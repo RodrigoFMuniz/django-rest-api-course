@@ -48,5 +48,16 @@
 > - Create the file ***serializers.py***
 > - Create the file ***viewsets.py***
 
+### -> Create atracoes app
+> 1. Use command:
+>> `python manage.py startapp atracoes`
+> 2. Define your table by creating a model class
+> 3. Register the class into admin.py using the command line:
+>> `admin.site.register(Atracao)`
+> 4. Make migration using the command line:
+>> `python manage.py makemigrations`
+> 5. Create a table using migrate command:
+>> `python manage.py migrate`
+
 
     
