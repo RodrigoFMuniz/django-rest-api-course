@@ -86,6 +86,19 @@
 >> `python manage.py migrate`
 ### -> Repeat step *Create a sub-folder called api into you app, at same level of migrations*
 
+### -> Create localizacao app
+> 1. Use command:
+>> `python manage.py startapp localizacao`
+> 2. Register into INSTALLED_APPS in settings.py 
+> 3. Define your table by creating a model class
+> 4. Register the class into admin.py using the command line:
+>> `admin.site.register(Localizacao)`
+> 5. Make migration using the command line:
+>> `python manage.py makemigrations`
+> 6. Create a table using migrate command:
+>> `python manage.py migrate`
+### -> Repeat step *Create a sub-folder called api into you app, at same level of migrations*
+
 
 
 ### Relationship between tables
@@ -135,6 +148,25 @@
           atracoes = models.ManyToManyField(Atracao)
           comentarios = models.ManyToManyField(Comentario)
           avaliacoes = models.ManyToManyField(Avaliacao)
+
+          def __str__(self):
+            return self.name
+
+#### Creating a relationship 1:1 between Pontos Turisticos and localizacao
+        from django.db import models
+        from atracoes.models import Atracao
+        from comentarios.models import Comentario
+        from avaliacoes.models import Avaliacao
+        from localizacao.models import Localizacao
+
+        class Pontos_Turisticos(models.Model):
+          name = models.CharField(max_length=150)
+          description = models.TextField()
+          aprovado = models.BooleanField(default=False)
+          atracoes = models.ManyToManyField(Atracao)
+          comentarios = models.ManyToManyField(Comentario)
+          avaliacoes = models.ManyToManyField(Avaliacao)
+          localizacao = models.ForeignKey(Localizacao,on_delete=models.CASCADE)
 
           def __str__(self):
             return self.name
