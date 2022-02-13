@@ -38,7 +38,7 @@
 >          def __str__(self):
 >            return self.name
 
-### -> Allow access of Dashboard to your Models as admin
+### -> Allow access to the Dashboard to your Models as admin
 >         from django.contrib import admin
 >         from .models import Pontos_Turisticos
 >         admin.site.register(Pontos_Turisticos)
