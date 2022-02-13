@@ -51,12 +51,13 @@
 ### -> Create atracoes app
 > 1. Use command:
 >> `python manage.py startapp atracoes`
-> 2. Define your table by creating a model class
-> 3. Register the class into admin.py using the command line:
+> 2. Register into INSTALLED_APPS in settings.py 
+> 3. Define your table by creating a model class
+> 4. Register the class into admin.py using the command line:
 >> `admin.site.register(Atracao)`
-> 4. Make migration using the command line:
+> 5. Make migration using the command line:
 >> `python manage.py makemigrations`
-> 5. Create a table using migrate command:
+> 6. Create a table using migrate command:
 >> `python manage.py migrate`
 
 ### -> Repeat step *Create a sub-folder called api into you app, at same level of migrations*
@@ -74,4 +75,28 @@
 
           def __str__(self):
             return self.name
+
+### -> Create comentarios app
+> 1. Use command:
+>> `python manage.py startapp comentarios`
+> 2. Register into INSTALLED_APPS in settings.py 
+> 3. Define your table by creating a model class
+> 4. Register the class into admin.py using the command line:
+>> `admin.site.register(Comentario)`
+> 5. Make migration using the command line:
+>> `python manage.py makemigrations`
+> 6. Create a table using migrate command:
+>> `python manage.py migrate`
+
+### -> Create avaliacoes app
+> 1. Use command:
+>> `python manage.py startapp avaliacoes`
+> 2. Register into INSTALLED_APPS in settings.py 
+> 3. Define your table by creating a model class
+> 4. Register the class into admin.py using the command line:
+>> `admin.site.register(Avaliacao)`
+> 5. Make migration using the command line:
+>> `python manage.py makemigrations`
+> 6. Create a table using migrate command:
+>> `python manage.py migrate`
 
