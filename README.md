@@ -60,7 +60,33 @@
 > 6. Create a table using migrate command:
 >> `python manage.py migrate`
 
+### -> Create avaliacoes app
+> 1. Use command:
+>> `python manage.py startapp avaliacoes`
+> 2. Register into INSTALLED_APPS in settings.py 
+> 3. Define your table by creating a model class
+> 4. Register the class into admin.py using the command line:
+>> `admin.site.register(Avaliacao)`
+> 5. Make migration using the command line:
+>> `python manage.py makemigrations`
+> 6. Create a table using migrate command:
+>> `python manage.py migrate`
 ### -> Repeat step *Create a sub-folder called api into you app, at same level of migrations*
+
+### -> Create comentarios app
+> 1. Use command:
+>> `python manage.py startapp comentarios`
+> 2. Register into INSTALLED_APPS in settings.py 
+> 3. Define your table by creating a model class
+> 4. Register the class into admin.py using the command line:
+>> `admin.site.register(Comentario)`
+> 5. Make migration using the command line:
+>> `python manage.py makemigrations`
+> 6. Create a table using migrate command:
+>> `python manage.py migrate`
+### -> Repeat step *Create a sub-folder called api into you app, at same level of migrations*
+
+
 
 ### Relationship between tables
 #### Creating a relationship Many to Many between Pontos Turisticos and atracoes
@@ -76,27 +102,22 @@
           def __str__(self):
             return self.name
 
-### -> Create comentarios app
-> 1. Use command:
->> `python manage.py startapp comentarios`
-> 2. Register into INSTALLED_APPS in settings.py 
-> 3. Define your table by creating a model class
-> 4. Register the class into admin.py using the command line:
->> `admin.site.register(Comentario)`
-> 5. Make migration using the command line:
->> `python manage.py makemigrations`
-> 6. Create a table using migrate command:
->> `python manage.py migrate`
 
-### -> Create avaliacoes app
-> 1. Use command:
->> `python manage.py startapp avaliacoes`
-> 2. Register into INSTALLED_APPS in settings.py 
-> 3. Define your table by creating a model class
-> 4. Register the class into admin.py using the command line:
->> `admin.site.register(Avaliacao)`
-> 5. Make migration using the command line:
->> `python manage.py makemigrations`
-> 6. Create a table using migrate command:
->> `python manage.py migrate`
+
+#### Creating a relationship Many to Many between Pontos Turisticos and comentarios
+
+        from django.db import models
+        from  django.contrib.auth.models import User
+
+        from pontos_turisticos.settings import DEFAULT_AUTO_FIELD
+
+        class Comentario(models.Model):
+          usuario = models.ForeignKey(User,on_delete= models.CASCADE)
+          comentarios = models.TextField()
+          data_comentario = models.DateTimeField(auto_now_add=True)
+          aprovado = models.BooleanField(default=True)
+
+          def __str__(self):
+            return self.usuario.username
+
 
