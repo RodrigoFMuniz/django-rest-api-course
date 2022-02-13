@@ -121,3 +121,23 @@
             return self.usuario.username
 
 
+#### Creating a relationship Many to Many between Pontos Turisticos and avaliacoes
+            
+        from django.db import models
+        from atracoes.models import Atracao
+        from comentarios.models import Comentario
+        from avaliacoes.models import Avaliacao
+
+        class Pontos_Turisticos(models.Model):
+          name = models.CharField(max_length=150)
+          description = models.TextField()
+          aprovado = models.BooleanField(default=False)
+          atracoes = models.ManyToManyField(Atracao)
+          comentarios = models.ManyToManyField(Comentario)
+          avaliacoes = models.ManyToManyField(Avaliacao)
+
+          def __str__(self):
+            return self.name
+
+
+

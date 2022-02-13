@@ -1,8 +1,6 @@
 from django.db import models
 from  django.contrib.auth.models import User
 
-from pontos_turisticos.settings import DEFAULT_AUTO_FIELD
-
 # Create your models here.
 class Comentario(models.Model):
   usuario = models.ForeignKey(User,on_delete= models.CASCADE)
