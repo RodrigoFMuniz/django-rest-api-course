@@ -59,5 +59,19 @@
 > 5. Create a table using migrate command:
 >> `python manage.py migrate`
 
+### -> Repeat step *Create a sub-folder called api into you app, at same level of migrations*
 
-    
+### Relationship between tables
+#### Creating a relationship Many to Many between Pontos Turisticos and atracoes
+        from django.db import models
+        from atracoes.models import Atracao
+
+        class Pontos_Turisticos(models.Model):
+          name = models.CharField(max_length=150)
+          description = models.TextField()
+          aprovado = models.BooleanField(default=False)
+          atracoes = models.ManyToManyField(Atracao)
+
+          def __str__(self):
+            return self.name
+
