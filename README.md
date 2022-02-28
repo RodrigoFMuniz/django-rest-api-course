@@ -173,7 +173,7 @@
 
 ## Building our API
 
-#### Creating a Viewsets class
+#### Creating a Viewsets class into viewsets file
 
         from rest_framework.viewsets import ModelViewSet
         from core.models import Pontos_Turisticos
@@ -183,7 +183,7 @@
           queryset = Pontos_Turisticos.objects.all()
           serializer_class = Pontos_Turisticos_Serializer
 
-#### Creating a Serializers Class
+#### Creating a Serializers Class into serializers file
 
         from rest_framework.serializers import ModelSerializer
         from core.models import Pontos_Turisticos
