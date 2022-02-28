@@ -173,4 +173,22 @@
 
 ## Building our API
 
+#### Creating a Viewsets class
 
+        from rest_framework.viewsets import ModelViewSet
+        from core.models import Pontos_Turisticos
+        from .serializers import Pontos_Turisticos_Serializer
+
+        class Pontos_Turisticos_ViewSet(ModelViewSet):
+          queryset = Pontos_Turisticos.objects.all()
+          serializer_class = Pontos_Turisticos_Serializer
+
+#### Creating a Serializers Class
+
+        from rest_framework.serializers import ModelSerializer
+        from core.models import Pontos_Turisticos
+
+        class Pontos_Turisticos_Serializer(ModelSerializer):
+          class Meta:
+            model = Pontos_Turisticos
+            fields = ('id','description','aprovado')
