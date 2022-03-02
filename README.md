@@ -309,3 +309,16 @@
           class Meta:
             model = Avaliacao
             fields = ('id', 'usuario','comentario','nota','data')
+
+## Advanced query methods
+
+### get_queryset(self)
+
+* urls.py
+
+        router.register(r'pontos_turisticos', Pontos_Turisticos_ViewSet,basename=Pontos_Turisticos)
+
+* pontos_turisticos.api.viewsets
+
+          def get_queryset(self):
+              return Pontos_Turisticos.objects.all()
