@@ -225,5 +225,32 @@
             model = Atracao
             fields = ('id','name','description','work_time','min_age')
 
+#### Registering localizacao endpoint into urls.py
+
+* urls.py
+        from localizacao.api.viewsets import Localizacao_Viewset
+
+        router.register(r'localizacao', Localizacao_Viewset)
+
+#### Creating a localizacao.viewsets code
+
+        from rest_framework.viewsets import ModelViewSet
+        from localizacao.models import Localizacao
+        from .serializers import Localizacao_Serializer
+
+        class Localizacao_Viewset(ModelViewSet):
+          queryset = Localizacao.objects.all()
+          serializer_class = Localizacao_Serializer
+
+#### Creating a localizacao.serializers code
+
+        from rest_framework.serializers import ModelSerializer
+        from localizacao.models import Localizacao 
+
+        class Localizacao_Serializer(ModelSerializer):
+          class Meta:
+            model = Localizacao
+            fields = ('id','descricao1','descricao2','cidade','estado','pais','latitude',"longitude")
+
 
         
