@@ -1,3 +1,5 @@
+from msilib.schema import Error
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from core.models import Pontos_Turisticos
 from .serializers import Pontos_Turisticos_Serializer
@@ -8,3 +10,39 @@ class Pontos_Turisticos_ViewSet(ModelViewSet):
 
   def get_queryset(self):
       return Pontos_Turisticos.objects.all()
+
+  # def list(self, request, *args, **kwargs):
+  #     return Response({'teste':123})
+  
+  def retrieve(self, request, *args, **kwargs):
+      params = kwargs
+      user_logged = request.user
+      print(user_logged)
+      param_list = params["pk"].split('-')
+      print(param_list)
+      p_turismo= Pontos_Turisticos.objects.filter(name = param_list[0],description=param_list[1])
+      serializer = Pontos_Turisticos_Serializer(p_turismo, many=True)
+      return Response(serializer.data)
+
+  # def create(self, request, *args, **kwargs):
+  #   validated_data = request.data
+  #   if validated_data["name"]=="Praia de Copacabana":
+  #     new_ponto_turistico = Pontos_Turisticos.objects.create(
+  #     name=validated_data["name"],description=validated_data["description"],aprovado=validated_data["aprovado"]
+  #     )
+  #     new_ponto_turistico.save()
+  #     serializer = Pontos_Turisticos_Serializer(new_ponto_turistico)
+  #     return Response(serializer.data)
+  #   return Response({"erro":"name inválido"})
+    
+
+
+  def destroy(self, request, *args, **kwargs):
+    params=kwargs
+    obj = Pontos_Turisticos.objects.filter(id = params["pk"])
+    print(params)
+    # print(obj)
+    if obj:
+      obj.delete()
+      return Response({"Resposta":"Destruído com sucesso"})
+    return Response({"Resposta":"Objeto não encontrado"})
