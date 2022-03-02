@@ -171,9 +171,11 @@
           def __str__(self):
             return self.name
 
-## Building our API
+## Building our API 
 
-#### Creating a Viewsets class into viewsets file
+### Pontos_Turisticos endpoint
+
+#### Creating a Viewsets class into viewsets file 
 
         from rest_framework.viewsets import ModelViewSet
         from core.models import Pontos_Turisticos
@@ -192,3 +194,36 @@
           class Meta:
             model = Pontos_Turisticos
             fields = ('id','description','aprovado')
+
+
+### atracoes endpoint
+
+#### Registering atracoes endpoint into urls.py
+
+* urls.py
+        from atracoes.api.viewsets import Atracoes_Viewset
+
+        router.register(r'atracoes', Atracoes_Viewset)
+
+#### Creating a atracoes.viewsets code
+
+        from rest_framework.viewsets import ModelViewSet
+        from atracoes.models import Atracao
+        from .serializers import Atracao_Serializer
+
+        class Atracoes_Viewset(ModelViewSet):
+          queryset = Atracao.objects.all()
+          serializer_class = Atracao_Serializer
+
+#### Creating a atracoes.serializers code
+
+        from rest_framework.serializers import ModelSerializer
+        from atracoes.models import Atracao 
+
+        class Atracao_Serializer(ModelSerializer):
+          class Meta:
+            model = Atracao
+            fields = ('id','name','description','work_time','min_age')
+
+
+        
