@@ -19,10 +19,12 @@ from django.urls import path, include
 from rest_framework import routers
 from core.api.viewsets import Pontos_Turisticos_ViewSet
 from atracoes.api.viewsets import Atracoes_Viewset
+from localizacao.api.viewsets import Localizacao_Viewset
 
 router = routers.DefaultRouter()
 router.register(r'pontos_turisticos', Pontos_Turisticos_ViewSet)
 router.register(r'atracoes', Atracoes_Viewset)
+router.register(r'localizacao',Localizacao_Viewset)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(router.urls))
