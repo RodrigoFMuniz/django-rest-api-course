@@ -225,6 +225,8 @@
             model = Atracao
             fields = ('id','name','description','work_time','min_age')
 
+### Localização endpoint
+
 #### Registering localizacao endpoint into urls.py
 
         from localizacao.api.viewsets import Localizacao_Viewset
@@ -251,5 +253,32 @@
             model = Localizacao
             fields = ('id','descricao1','descricao2','cidade','estado','pais','latitude',"longitude")
 
+### Comentários endpoint
+
+#### Registering comentarios endpoint into urls.py
+
+        from comentarios.api.viewsets import Comentarios_Viewset
+
+        router.register(r'comentarios', Comentarios_Viewset)
+
+#### Creating a comentarios.viewsets code
+
+        from rest_framework.viewsets import ModelViewSet
+        from .serializers import Comentarios_Serializer
+        from comentarios.models import Comentario
+
+        class Comentarios_Viewset(ModelViewSet):
+          queryset = Comentario.objects.all()
+          serializer_class = Comentarios_Serializer
+
+#### Creating a comentarios.serializers code
+
+        from rest_framework.serializers import ModelSerializer
+        from comentarios.models import Comentario
+
+        class Comentarios_Serializer(ModelSerializer):
+          class Meta:
+            model = Comentario
+            fields = ('id','usuario','comentarios','data_comentario','aprovado')
 
         
