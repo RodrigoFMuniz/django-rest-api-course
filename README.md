@@ -200,7 +200,7 @@
 
 #### Registering atracoes endpoint into urls.py
 
-* urls.py
+
         from atracoes.api.viewsets import Atracoes_Viewset
 
         router.register(r'atracoes', Atracoes_Viewset)
@@ -227,7 +227,6 @@
 
 #### Registering localizacao endpoint into urls.py
 
-* urls.py
         from localizacao.api.viewsets import Localizacao_Viewset
 
         router.register(r'localizacao', Localizacao_Viewset)
