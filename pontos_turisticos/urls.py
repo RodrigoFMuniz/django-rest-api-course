@@ -21,13 +21,14 @@ from core.api.viewsets import Pontos_Turisticos_ViewSet
 from atracoes.api.viewsets import Atracao_Viewset
 from localizacao.api.viewsets import Localizacao_Viewset
 from comentarios.api.viewsets import Comentario_Viewset
-# from avaliacoes
+from avaliacoes.api.viewsets import Avaliacao_Viewset
 
 router = routers.DefaultRouter()
 router.register(r'pontos_turisticos', Pontos_Turisticos_ViewSet)
 router.register(r'atracoes', Atracao_Viewset)
 router.register(r'localizacoes',Localizacao_Viewset)
 router.register(r'comentarios',Comentario_Viewset)
+router.register(r'avaliacoes',Avaliacao_Viewset)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(router.urls))

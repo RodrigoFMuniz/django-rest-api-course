@@ -281,4 +281,31 @@
             model = Comentario
             fields = ('id','usuario','comentarios','data_comentario','aprovado')
 
-        
+
+### Avaliacao endpoint
+
+#### Registering avaliacoes endpoint into urls.py
+
+        from avaliacoes.api.viewsets import Avaliacao_Viewset
+
+        router.register(r'avaliacoes', Avaliacao_Viewset)
+
+#### Creating a avaliacoes.viewsets code
+
+        from rest_framework.viewsets import ModelViewSet
+        from avaliacoes.models import Avaliacao
+        from .serializers import Avaliacao_Serializer
+
+        class Avaliacao_Viewset(ModelViewSet):
+          queryset = Avaliacao.objects.all()
+          serializer_class = Avaliacao_Serializer
+
+#### Creating a avaliacoes.serializers code
+
+        from rest_framework.serializers import ModelSerializer
+        from avaliacoes.models import Avaliacao
+
+        class Avaliacao_Serializer(ModelSerializer):
+          class Meta:
+            model = Avaliacao
+            fields = ('id', 'usuario','comentario','nota','data')
