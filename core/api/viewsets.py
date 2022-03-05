@@ -46,3 +46,18 @@ class Pontos_Turisticos_ViewSet(ModelViewSet):
       obj.delete()
       return Response({"Resposta":"Destruído com sucesso"})
     return Response({"Resposta":"Objeto não encontrado"})
+
+  def update(self, request, *args, **kwargs):
+      requ = request.data
+      print(requ)
+      kw = kwargs
+      print(kw)
+      search = Pontos_Turisticos.objects.filter(id = kw['pk'])
+      print(search)
+
+      if search:
+        data_updated = Pontos_Turisticos.objects.update(name=requ["name"],description=requ["description"])
+        search.save()
+        serializer = Pontos_Turisticos_Serializer(data_updated)
+        return Response(serializer.data)
+      return Response({"erro":"Objeto inexistente"})
