@@ -312,7 +312,7 @@
 
 ## Advanced query methods
 
-### get_queryset(self)
+### get_queryset(self)  ====    Get
 
 * urls.py
 
@@ -324,14 +324,14 @@
               return Pontos_Turisticos.objects.all()
 
 
-### list(self)
+### list(self)   =====   Get
 
 * Override get_queryset method
 
           def list(self, request, *args, **kwargs):
               return Response({'teste':123})
 
-### retrieve(self)
+### retrieve(self)   ====   Get
 
         def retrieve(self, request, *args, **kwargs):
             params = kwargs
@@ -342,7 +342,7 @@
             serializer = Pontos_Turisticos_Serializer(p_turismo, many=True)
             return Response(serializer.data)
 
-### create(self)
+### create(self)   =====  Post
 
         def create(self, request, *args, **kwargs):
           validated_data = request.data
@@ -355,15 +355,43 @@
             return Response(serializer.data)
           return Response({"erro":"name inválido"})
 
-### destroy(self)
+### destroy(self)   ===== Delete
 
         def destroy(self, request, *args, **kwargs):
-          params=kwargs
-          obj = Pontos_Turisticos.objects.filter(id = params["pk"])
-          print(params)
-          # print(obj)
-          if obj:
-            obj.delete()
-            return Response({"Resposta":"Destruído com sucesso"})
-          return Response({"Resposta":"Objeto não encontrado"})
+            params=kwargs
+            obj = Pontos_Turisticos.objects.filter(id = params["pk"])
+            print(params)
+            # print(obj)
+            if obj:
+              obj.delete()
+              return Response({"Resposta":"Destruído com sucesso"})
+            return Response({"Resposta":"Objeto não encontrado"})
                 
+### update(self)  ==== Put
+        def update(self, request, *args, **kwargs):
+            requ = request.data
+            print(requ)
+            kw = kwargs
+            print(kw)
+            search = Pontos_Turisticos.objects.filter(id = kw['pk'])
+            print(search)
+
+            if search:
+              data_updated = Pontos_Turisticos.objects.update(name=requ["name"],description=requ["description"])
+              search.save()
+              serializer = Pontos_Turisticos_Serializer(data_updated)
+              return Response(serializer.data)
+            return Response({"erro":"Objeto inexistente"})
+
+### partial_update(self)  ====   Patch
+          
+          def partial_update(self, request, *args, **kwargs):
+              pass
+
+### custom_action(self)  ====   All verbs
+
+          from rest_framework.decorators import action
+
+          @action(methods=['get','post'], detail=True)
+          def metodo_personalizado(self, request, ph=None):
+            pass
