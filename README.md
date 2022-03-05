@@ -395,3 +395,23 @@
           @action(methods=['get','post'], detail=True)
           def metodo_personalizado(self, request, ph=None):
             pass
+
+## Working with images
+
+* install Pillow package
+
+        python -m pip install Pillow
+
+* models.py
+
+        foto = models.ImageField(upload_to='pontos_turisticos',null=True,blank=True)
+
+* urls.py
+
+        from django.conf import settings
+        from django.conf.urls.static import static
+
+        urlpatterns = [
+            path('admin/', admin.site.urls),
+            path('',include(router.urls))
+        ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
