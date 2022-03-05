@@ -6,6 +6,7 @@ class Atracao(models.Model):
   description = models.TextField()
   work_time = models.TextField()
   min_age = models.IntegerField()
+  foto = models.ImageField(upload_to='atracoes',null=True,blank=True)
 
   def __str__(self):
     return self.name

@@ -16,6 +16,8 @@ Including another URLconf
 from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from rest_framework import routers
 from core.api.viewsets import Pontos_Turisticos_ViewSet
 from atracoes.api.viewsets import Atracao_Viewset
@@ -30,9 +32,10 @@ router.register(r'atracoes', Atracao_Viewset)
 router.register(r'localizacoes',Localizacao_Viewset)
 router.register(r'comentarios',Comentario_Viewset)
 router.register(r'avaliacoes',Avaliacao_Viewset)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(router.urls))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
