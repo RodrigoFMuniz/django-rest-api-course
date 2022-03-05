@@ -1,4 +1,5 @@
 from msilib.schema import Error
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from core.models import Pontos_Turisticos
@@ -67,3 +68,7 @@ class Pontos_Turisticos_ViewSet(ModelViewSet):
   
   def partial_update(self, request, *args, **kwargs):
       pass
+
+  @action(methods=['get','post'], detail=True)
+  def metodo_personalizado(self, request, ph=None):
+    pass
