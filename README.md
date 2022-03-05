@@ -415,3 +415,19 @@
             path('admin/', admin.site.urls),
             path('',include(router.urls))
         ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+## Using query strings as search tool
+
+        def get_queryset(self):
+          id= self.request.query_params.get('id', None)
+          name= self.request.query_params.get('name',None)
+          description= self.request.query_params.get('description', None)
+          queryset = Pontos_Turisticos.objects.all()
+          if id:
+            queryset = queryset.filter(pk=id)
+          if name:
+            queryset = queryset.filter(name__iexact=name)
+          if description:
+            queryset = queryset.filter(description=description)
+          
+          return queryset
