@@ -61,3 +61,9 @@ class Pontos_Turisticos_ViewSet(ModelViewSet):
         serializer = Pontos_Turisticos_Serializer(data_updated)
         return Response(serializer.data)
       return Response({"erro":"Objeto inexistente"})
+  
+  def update(self, request, *args, **kwargs):
+      pass
+  
+  def partial_update(self, request, *args, **kwargs):
+      pass
