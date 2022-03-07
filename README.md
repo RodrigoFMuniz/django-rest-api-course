@@ -431,3 +431,10 @@
             queryset = queryset.filter(description=description)
           
           return queryset
+
+
+## Using lookup_field 
+
+* lookup_field must be used everytime you want to change the search key from a default(id) to another one. It must have a primary key behavior because that feature doesn't support multiple returns.
+
+        lookup_field = 'name'
