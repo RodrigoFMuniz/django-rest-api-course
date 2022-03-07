@@ -8,3 +8,4 @@ class Comentario_Viewset(ModelViewSet):
   serializer_class = Comentario_Serializer
   filter_backends = [filters.SearchFilter]
   search_fields = ['comentarios','usuario__username']
+ 
