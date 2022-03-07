@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from xml.etree.ElementInclude import include
+# from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -25,6 +25,7 @@ from core.models import Pontos_Turisticos
 from localizacao.api.viewsets import Localizacao_Viewset
 from comentarios.api.viewsets import Comentario_Viewset
 from avaliacoes.api.viewsets import Avaliacao_Viewset
+from rest_framework.authtoken import views
 
 router = routers.DefaultRouter()
 router.register(r'pontos_turisticos', Pontos_Turisticos_ViewSet,basename=Pontos_Turisticos)
@@ -35,7 +36,9 @@ router.register(r'avaliacoes',Avaliacao_Viewset)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include(router.urls))
+    path('',include(router.urls)),
+    path('api-token-auth/',views.obtain_auth_token)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 
