@@ -7,4 +7,4 @@ class Comentario_Viewset(ModelViewSet):
   queryset = Comentario.objects.all()
   serializer_class = Comentario_Serializer
   filter_backends = [filters.SearchFilter]
-  search_fields = ['comentarios']
+  search_fields = ['comentarios','usuario__username']
