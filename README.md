@@ -438,3 +438,23 @@
 * lookup_field must be used everytime you want to change the search key from a default(id) to another one. It must have a primary key behavior because that feature doesn't support multiple returns.
 
         lookup_field = 'name'
+
+
+## Authentication
+
+* urls.py
+
+        from rest_framework.authtoken import views
+
+        path('api-token-auth/',views.obtain_auth_token)
+
+* settings.py
+
+        REST_FRAMEWORK ={
+            'DEFAULT_FILTER_BACKENDS':('django_filters.rest_framework.DjangoFilterBackend',),
+            'DEFAULT_AUTHENTICATION_CLASSES':(
+                'rest_framework.authentication.BasicAuthentication',
+                'rest_framework.authentication.SessionAuthentication',
+
+            )
+        }
